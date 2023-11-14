@@ -1,0 +1,19 @@
+{
+  "name": "minerender-jsfiddle",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "@types/three": "^0.158.2",
+    "esbuild": "^0.19.5",
+    "esbuild-plugin-polyfill-node": "^0.3.0",
+    "three": "^0.158.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "minerender": "link:../MineRender2"
+  }
+}

@@ -1,4 +1,4 @@
-import { AssetKey, BlockStates, Models, OrbitControls, Renderer, SceneInspector, SceneObject, Skins, toRadians } from "minerender";
+import { AssetKey, BlockStates, Entities, Models, OrbitControls, Renderer, SceneInspector, SceneObject, Skins, toRadians } from "minerender";
 import { Euler, Object3D, Vector3 } from "three";
 
 const renderContainer = document.getElementById('render-container') as HTMLDivElement;
@@ -57,11 +57,12 @@ Skins.fromUuidOrUsername("inventivetalent")
         rightArm.rotateX(toRadians(60));
     });
 
-for(let x = -1; x < 2; x++) {
-    for(let z = -1; z < 2; z++) {
-        BlockStates.get(AssetKey.parse("blockstates", Math.random() > 0.4 ? "stone" : "andesite"))
+for (let x = -1; x < 2; x++) {
+    for (let z = -1; z < 2; z++) {
+        BlockStates.get(AssetKey.parse("blockstates", Math.random() > 0.4 ? "stone" : "water"))
             .then(blockState => renderer.scene.addBlock(blockState!, {
-                wireframe: true
+                wireframe: true,
+                instanceMeshes: true
             }))
             .then(blockObject => {
                 blockObject.setPosition(toBlockPos(x, 0, z));
@@ -76,6 +77,56 @@ Models.get(AssetKey.parse("models", "item/diamond_sword"))
     .then(modelObject => {
         modelObject.setPosition(new Vector3(6, 33, -11));
         modelObject.setRotation(new Euler(toRadians(14), toRadians(90), 0));
+    })
+
+Models.get(AssetKey.parse("models", "block/sea_lantern"))
+    .then(model => renderer.scene.addModel(model!, {
+        wireframe: true,
+        instanceMeshes: true
+    }))
+    .then(modelObject => {
+        modelObject.setPosition(toBlockPos(2, 0, 2));
+    })
+Models.get(AssetKey.parse("models", "block/sea_lantern"))
+    .then(model => renderer.scene.addModel(model!, {
+        wireframe: true,
+        instanceMeshes: true
+    }))
+    .then(modelObject => {
+        modelObject.setPosition(toBlockPos(1, 0, 2));
+    })
+Models.get(AssetKey.parse("models", "block/sea_lantern"))
+    .then(model => renderer.scene.addModel(model!, {
+        wireframe: true,
+        instanceMeshes: true
+    }))
+    .then(modelObject => {
+        modelObject.setPosition(toBlockPos(3, 0, 2));
+    })
+Models.get(AssetKey.parse("models", "block/lava"))
+    .then(model => renderer.scene.addModel(model!, {
+        wireframe: true,
+        instanceMeshes: true
+    }))
+    .then(modelObject => {
+        modelObject.setPosition(toBlockPos(2, 0, 3));
+    })
+
+
+Entities.getBlock(AssetKey.parse("entities", "sign"), new AssetKey("minecraft", "signs/acacia","textures", "entity"))
+    .then(entity => renderer.scene.addEntity(entity!, {
+        wireframe: true,
+    }))
+    .then(entityObject => {
+        entityObject.setPosition(toBlockPos(0, 0, 3));
+    })
+
+Entities.getBlock(AssetKey.parse("entities", "banner"), new AssetKey("minecraft", "banner/base","textures", "entity"))
+    .then(entity => renderer.scene.addEntity(entity!, {
+        wireframe: true,
+    }))
+    .then(entityObject => {
+        entityObject.setPosition(toBlockPos(0, 0, 4));
     })
 
 function toBlockPos(x: number, y: number, z: number) {

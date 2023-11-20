@@ -4,7 +4,7 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "build": "node build.mjs"
+    "dev": "node build.mjs"
   },
   "devDependencies": {
     "@types/three": "^0.158.2",

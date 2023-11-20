@@ -59,7 +59,7 @@ Skins.fromUuidOrUsername("inventivetalent")
 
 for (let x = -1; x < 2; x++) {
     for (let z = -1; z < 2; z++) {
-        BlockStates.get(AssetKey.parse("blockstates", Math.random() > 0.4 ? "stone" : "water"))
+        BlockStates.get(AssetKey.parse("blockstates", Math.random() > 0.4 ? "stone" : "granite"))
             .then(blockState => renderer.scene.addBlock(blockState!, {
                 wireframe: true,
                 instanceMeshes: true
@@ -79,55 +79,6 @@ Models.get(AssetKey.parse("models", "item/diamond_sword"))
         modelObject.setRotation(new Euler(toRadians(14), toRadians(90), 0));
     })
 
-Models.get(AssetKey.parse("models", "block/sea_lantern"))
-    .then(model => renderer.scene.addModel(model!, {
-        wireframe: true,
-        instanceMeshes: true
-    }))
-    .then(modelObject => {
-        modelObject.setPosition(toBlockPos(2, 0, 2));
-    })
-Models.get(AssetKey.parse("models", "block/sea_lantern"))
-    .then(model => renderer.scene.addModel(model!, {
-        wireframe: true,
-        instanceMeshes: true
-    }))
-    .then(modelObject => {
-        modelObject.setPosition(toBlockPos(1, 0, 2));
-    })
-Models.get(AssetKey.parse("models", "block/sea_lantern"))
-    .then(model => renderer.scene.addModel(model!, {
-        wireframe: true,
-        instanceMeshes: true
-    }))
-    .then(modelObject => {
-        modelObject.setPosition(toBlockPos(3, 0, 2));
-    })
-Models.get(AssetKey.parse("models", "block/lava"))
-    .then(model => renderer.scene.addModel(model!, {
-        wireframe: true,
-        instanceMeshes: true
-    }))
-    .then(modelObject => {
-        modelObject.setPosition(toBlockPos(2, 0, 3));
-    })
-
-
-Entities.getBlock(AssetKey.parse("entities", "sign"), new AssetKey("minecraft", "signs/acacia","textures", "entity"))
-    .then(entity => renderer.scene.addEntity(entity!, {
-        wireframe: true,
-    }))
-    .then(entityObject => {
-        entityObject.setPosition(toBlockPos(0, 0, 3));
-    })
-
-Entities.getBlock(AssetKey.parse("entities", "banner"), new AssetKey("minecraft", "banner/base","textures", "entity"))
-    .then(entity => renderer.scene.addEntity(entity!, {
-        wireframe: true,
-    }))
-    .then(entityObject => {
-        entityObject.setPosition(toBlockPos(0, 0, 4));
-    })
 
 function toBlockPos(x: number, y: number, z: number) {
     return new Vector3(x, y, z).multiplyScalar(16);
